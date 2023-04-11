@@ -1,46 +1,31 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
-
+#include <stdio.h>
+#include <string.h>
 /**
- * argstostr - concatenates all the arguments of your program
- *@ac: number of arguments
- *@av: arguments
- * Return: a pointer to a new string
+ * strtow - concatenates arguments.
+ * @str: String to be splitted.
+ *
+ * Return: a pointer to array of String.
  */
-char *argstostr(int ac, char **av)
+char **strtow(char *str)
 {
-	int i;
-	int j;
-	char *p = NULL;
-	int k;
-	int ext;
+	char *array = NULL;
+	unsigned int i = 0, j = 0, k;
 
-	k = 0;
-	ext = 0;
-	if (ac == 0 || av == NULL)
+	if (strncmp(str, "", 1) || str == NULL)
 		return (NULL);
-	for (i = 0; i < ac; i++)
-	{
-		for (j = 0; av[i][j] != '\0'; j++)
-		{
-			ext++;
-		}
-	}
-
-	p = (char *)malloc(ext + ac + 1 * sizeof(char));
-	if (p == NULL)
+	array = malloc((i + j + 1) * sizeof(char));
+	if (array == NULL)
 		return (NULL);
-	for (i = 0; i < ac; i++)
+	for (k = 0; k < i; k++)
+		array[k] = str[k];
+	i = k;
+	for (k = 0; k < j; k++)
 	{
-		for (j = 0; av[i][j] != '\0'; j++)
-		{
-			p[k] = av[i][j];
-			k++;
-		}
-		p[k] = '\n';
-		k++;
+		array[i] = str[k];
+		i++;
 	}
-	p[k] = '\0';
-	return (p);
+	array[i] = '\0';
+	return (NULL);
 }
